@@ -1,8 +1,8 @@
 # 0x16. C - Simple Shell
 
-<img src="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-low_level_programming/235/shell.jpeg" width="100" align="center">
+<img src="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-low_level_programming/235/shell.jpeg" width="300px" height="300px" align="center">
 
-#### An alx team project 
+#### An alx team project where each team are required to create a command line interpreter that takes a text command and execute other program in response to thet command
 
 <hr>
 
