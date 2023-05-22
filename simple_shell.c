@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "main.h"
 
 /**
   * main - The entry point of the program
@@ -9,6 +8,7 @@
  */
 int main(int argc, char const *argv[])
 {
-	printf("Hello World!\n");
+	if (argc > 0)
+		shell_interactive(argv[0]);
 	return (0);
 }
