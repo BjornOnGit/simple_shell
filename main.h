@@ -12,6 +12,7 @@
 /* Function Prototypes */
 void exec_cmd(const char *filename, char **args);
 void shell_interactive(const char *filename);
+void shell_non_interactive(const char *filename);
 ssize_t _getline(char **lineptr, size_t *n, int fd);
 
 void print_err(char *str, ...);
