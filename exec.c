@@ -17,7 +17,7 @@ void exec_cmd(const char *filename, char **args)
 	{
 		if (execve(args[0], args, NULL) == -1)
 		{
-			print_err("%s: %d: %s: not found\n", filename, n, args[0]);
+			perror(filename);
 		}
 	}
 	else
