@@ -67,10 +67,9 @@ char *_strtok(char *str, const char *delim)
 		next++;
 	}
 
-	token = NULL;
 	next = NULL;
 
-	return (token);
+	return (*token != '\0' ? token : NULL);
 }
 
 /**
