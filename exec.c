@@ -18,7 +18,9 @@ void exec_cmd(const char *filename, char **args)
 		if (execve(args[0], args, NULL) == -1)
 		{
 			perror(filename);
+			exit(EXIT_FAILURE);
 		}
+		exit(EXIT_SUCCESS);
 	}
 	else
 	{
