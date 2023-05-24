@@ -7,7 +7,7 @@
   * Return: 0 if s1 and s2 are equals,
   * another number if not.
   */
-int _strcmp(char *s1, char *s2)
+int _strcmp(const char *s1, const char *s2)
 {
 	int i = 0, op = 0;
 
@@ -20,6 +20,7 @@ int _strcmp(char *s1, char *s2)
 		op = *(s1 + i) - *(s2 + i);
 		i++;
 	}
+
 	return (op);
 }
 
@@ -109,4 +110,25 @@ size_t _strlen(const char *s)
 		len++;
 
 	return (len);
+}
+
+/**
+ * _strcat - concatenate tow strings
+ * @dest: the first string
+ * @src: the second string to concatenate
+ *
+ * Return: A pointer to the resulting string dest
+ */
+char *_strcat(char *dest, const char *src)
+{
+	size_t dest_len = _strlen(dest);
+	size_t i;
+
+	for (i = 0; src[i] != '\0'; i++)
+	{
+		dest[dest_len + i] = src[i];
+	}
+	dest[dest_len + i] = '\0';
+
+	return (dest);
 }

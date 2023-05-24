@@ -7,9 +7,10 @@
  */
 void exec_cmd(const char *filename, char **args)
 {
-	static int n = 0;
+	static int n;
 	pid_t pid = fork();
 
+	n = 0;
 	n++;
 
 	if (pid == 0)

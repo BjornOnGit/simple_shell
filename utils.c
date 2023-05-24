@@ -35,9 +35,9 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 		r = read(fd, pos, 1);
 		if (r == 0)
 			break;
-		else if (r == 0)
+		else if (r == (size_t)-1)
 		{
-			free(lineptr);
+			free(*lineptr);
 			return (-1);
 		}
 		else
@@ -50,4 +50,38 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 	}
 	*(pos + 1) = '\0';
 	return (total_read > 0 ? total_read : (size_t)-1);
+}
+
+/**
+ * _getenv - get an environment variable
+ * @name: name of the variable
+ *
+ * Return: the value of `name` or NULL
+ */
+char *_getenv(const char *name)
+{
+	extern char **environ;
+	char *n = NULL, *dup = NULL;
+	int i = 0;
+
+	if (name == NULL)
+		return (NULL);
+
+	while (environ[i])
+	{
+		dup = _strdup(environ[i]);
+		
+		n = _strtok(dup, "=");
+
+		if (_strcmp(name, n) == 0)
+		{
+			n = _strtok(NULL, "=");
+			return (n);
+		}
+		i++;
+	}
+
+	free(dup);
+
+	return (NULL);
 }

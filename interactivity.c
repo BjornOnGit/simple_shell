@@ -43,10 +43,10 @@ void shell_interactive(const char *filename)
 		exec_cmd(filename, args);
 
 		free(args);
+		free(buff_copy);
 	}
 
 	free(buff);
-	free(buff_copy);
 }
 
 /**
@@ -60,32 +60,33 @@ void shell_non_interactive(const char *filename)
 	size_t n = 0;
 	int i, argc = 0;
 
-	_getline(&buff, &n, STDIN_FILENO);
-
-	buff_copy = _strdup(buff);
-	token = _strtok(buff_copy, delim);
-
-	while (token)
+	while (_getline(&buff, &n, STDIN_FILENO) != -1)
 	{
+		buff_copy = _strdup(buff);
+		token = _strtok(buff_copy, delim);
+
+		while (token)
+		{
+			argc++;
+			token = _strtok(NULL, delim);
+		}
 		argc++;
-		token = _strtok(NULL, delim);
+
+		token = _strtok(buff, delim);
+		args = malloc(sizeof(char *) * argc);
+
+		i = 0;
+		while (token)
+		{
+			args[i++] = token;
+			token = _strtok(NULL, delim);
+		}
+		args[i + 1] = NULL;
+
+		exec_cmd(filename, args);
+
+		free(args);
+		free(buff_copy);
 	}
-	argc++;
-
-	token = _strtok(buff, delim);
-	args = malloc(sizeof(char *) * argc);
-
-	i = 0;
-	while (token)
-	{
-		args[i++] = token;
-		token = _strtok(NULL, delim);
-	}
-	args[i + 1] = NULL;
-
-	exec_cmd(filename, args);
-
-	free(args);
 	free(buff);
-	free(buff_copy);
 }

@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <sys/wait.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #include "str.h"
 
 /* Function Prototypes */
@@ -19,5 +21,7 @@ void print_err(char *str, ...);
 int _putchar(char c);
 void print_string(char *s);
 void print_unsigned_number(unsigned int n);
+char *handle_path(char *cmd);
+char *_getenv(const char *name);
 
 #endif
