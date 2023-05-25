@@ -9,7 +9,20 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <string.h>
+#include <errno.h>
 #include "str.h"
+
+/**
+ * struct built_in - data structure to handle builtin cmd
+ * @name: name of command
+ * @func: function pointer to appropriate function
+ */
+typedef struct built_in
+{
+	char *name;
+	void (*func)(char **args);
+} builtin;
 
 /* global environ variable */
 extern char **environ;
@@ -27,5 +40,9 @@ void print_string(char *s);
 void print_unsigned_number(unsigned int n);
 char *handle_path(char *cmd);
 char *_getenv(const char *name);
+int check_builtin(char **args);
+void handle_exit(char **argv);
+void handle_clear(char **argv);
+void handle_env(char **argv);
 
 #endif

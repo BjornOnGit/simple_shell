@@ -5,25 +5,75 @@
  * @filename: the program name
  * @args: command arguments
  */
-void exec_cmd(const char *filename, char **args)
+void exec_cmd(const char *file, char **args)
 {
 	static int n;
-	pid_t pid = fork();
+	char *cmd;
+	int built_in;
+	pid_t pid;
 
 	n = 0;
 	n++;
 
-	if (pid == 0)
+	if (args)
 	{
-		if (execve(args[0], args, NULL) == -1)
+		built_in = check_builtin(args);
+
+		if (built_in == 0)
+			return;
+		cmd = handle_path(args[0]);
+
+		if (cmd == NULL)
 		{
-			perror(filename);
-			exit(EXIT_FAILURE);
+			if (execve(args[0], args, NULL) == -1)
+				print_err("%s: %d: %s: %s\n", file, n, args[0], strerror(errno));
 		}
-		exit(EXIT_SUCCESS);
+		else
+		{
+			pid = fork();
+
+			if (pid == -1)
+				return;
+			if (pid == 0)
+			{
+				if (execve(cmd, args, NULL) == -1)
+					print_err("%s: %d: %s: %s\n", file, n, cmd, strerror(errno));
+			}
+			else
+			{
+				wait(NULL);
+				return;
+			}
+		}
 	}
-	else
+}
+
+/**
+ * check_builtin - check if argument is a builtin arg
+ * @args: argument
+ *
+ * Return: -1 if builtin or 0 if not
+ */
+int check_builtin(char **args)
+{
+	int i, builtins_len;
+
+	builtin builtins[] = {
+		{"exit", handle_exit},
+		{"clear", handle_clear},
+		{"env", handle_env}
+	};
+
+	builtins_len = sizeof(builtins) / sizeof(builtin);
+
+	for (i = 0; i < builtins_len; i++)
 	{
-		wait(NULL);
+		if (_strcmp(args[0], builtins[i].name) == 0)
+		{
+			builtins[i].func(args);
+			return (0);
+		}
 	}
+
+	return (-1);
 }
