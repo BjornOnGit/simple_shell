@@ -19,5 +19,7 @@ void print_err(char *str, ...);
 int _putchar(char c);
 void print_string(char *s);
 void print_unsigned_number(unsigned int n);
+int _unsetenv(const char *name);
+int _setenv(const char *name, const char *value, int overwrite);
 
 #endif
