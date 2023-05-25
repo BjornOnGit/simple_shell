@@ -16,7 +16,11 @@ void shell_interactive(const char *filename)
 
 	while (1)
 	{
-		_getline(&buff, &n, STDIN_FILENO);
+		if (_getline(&buff, &n, STDIN_FILENO) == -1)
+		{
+			free(buff);
+			exit(EXIT_SUCCESS);
+		}
 
 		buff_copy = _strdup(buff);
 
@@ -41,11 +45,9 @@ void shell_interactive(const char *filename)
 		}
 		args[i + 1] = NULL;
 		exec_cmd(filename, args);
-
 		free(args);
 		free(buff_copy);
 	}
-
 	free(buff);
 }
 
@@ -87,6 +89,7 @@ void shell_non_interactive(const char *filename)
 
 		free(args);
 		free(buff_copy);
+		free(buff);
 	}
-	free(buff);
+	exit(0);
 }
