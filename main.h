@@ -38,14 +38,11 @@ void print_err(char *str, ...);
 int _putchar(char c);
 void print_string(char *s);
 void print_unsigned_number(unsigned int n);
-<<<<<<< HEAD
 char *handle_path(char *cmd);
 char *_getenv(const char *name);
 int check_builtin(char **args);
 void handle_exit(char **argv);
 void handle_clear(char **argv);
 void handle_env(char **argv);
-=======
->>>>>>> cc092655ba1707bb738a6f0cef9ada403dd5c502
 
 #endif

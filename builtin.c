@@ -7,7 +7,10 @@
 void handle_exit(char **argv)
 {
 	if (argv != NULL)
+	{
+		free(*argv);
 		exit(0);
+	}
 }
 
 /**
@@ -17,7 +20,10 @@ void handle_exit(char **argv)
 void handle_clear(char **argv)
 {
 	if (argv != NULL)
+	{
+		free(*argv);
 		system("clear");
+	}
 }
 
 void handle_env(char **argv)

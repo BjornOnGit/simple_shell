@@ -64,6 +64,9 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 
 	total_read = readline(*lineptr, n, fd);
 
+	if(total_read == (size_t) -1)
+		free(*lineptr);
+
 	return (total_read);
 }
 
