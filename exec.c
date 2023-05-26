@@ -2,7 +2,7 @@
 
 /**
  * exec_cmd - execute command from input
- * @filename: the program name
+ * @file: the program name
  * @args: command arguments
  */
 void exec_cmd(const char *file, char **args)
@@ -15,7 +15,7 @@ void exec_cmd(const char *file, char **args)
 	n = 0;
 	n++;
 
-	if (args)
+	if (args != NULL)
 	{
 		built_in = check_builtin(args);
 

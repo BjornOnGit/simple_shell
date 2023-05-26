@@ -86,7 +86,10 @@ char *_strdup(const char *s)
 	char *dup = malloc(sizeof(char) * len + 1);
 
 	if (dup == NULL)
+	{
+		free(dup);
 		return (NULL);
+	}
 
 	for (i = 0; s[i] != '\0'; i++)
 		dup[i] = s[i];

@@ -44,7 +44,9 @@ void shell_interactive(const char *filename)
 			token = _strtok(NULL, delim);
 		}
 		args[i + 1] = NULL;
-		exec_cmd(filename, args);
+
+		if (*args != NULL)
+			exec_cmd(filename, args);
 		free(args);
 		free(buff_copy);
 	}
@@ -62,8 +64,14 @@ void shell_non_interactive(const char *filename)
 	size_t n = 0;
 	int i, argc = 0;
 
-	while (_getline(&buff, &n, STDIN_FILENO) != -1)
+	while (1)
 	{
+		if (_getline(&buff, &n, STDIN_FILENO) == -1)
+		{
+			free(buff);
+			exit(EXIT_SUCCESS);
+		}
+
 		buff_copy = _strdup(buff);
 		token = _strtok(buff_copy, delim);
 
@@ -91,5 +99,4 @@ void shell_non_interactive(const char *filename)
 		free(buff_copy);
 		free(buff);
 	}
-	exit(0);
 }

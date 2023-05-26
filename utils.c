@@ -1,5 +1,13 @@
 #include "main.h"
 
+/**
+ * readline - read input from stdin
+ * @line: a buffer to store read inputs
+ * @n: number of byte read
+ * @fd: file discriptor to read from
+ *
+ * Return: number of byte read or -1
+ */
 size_t readline(char *line, size_t *n, int fd)
 {
 	size_t r = 0, total = 0;
@@ -64,7 +72,7 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 
 	total_read = readline(*lineptr, n, fd);
 
-	if(total_read == (size_t) -1)
+	if (total_read == (size_t) -1)
 		free(*lineptr);
 
 	return (total_read);
