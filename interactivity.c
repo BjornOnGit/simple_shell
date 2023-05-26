@@ -25,7 +25,6 @@ void shell_interactive(const char *filename)
 		buff_copy = _strdup(buff);
 
 		token = _strtok(buff_copy, delim);
-
 		while (token)
 		{
 			argc++;
@@ -37,7 +36,6 @@ void shell_interactive(const char *filename)
 		args = malloc(sizeof(char *) * argc);
 
 		i = 0;
-
 		while (token)
 		{
 			args[i++] = token;
