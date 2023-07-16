@@ -2,6 +2,8 @@
 
 <img src="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-low_level_programming/235/shell.jpeg" width="300px" height="300px" align="center">
 
+###### A shell, also known as a command interpreter, is a program that provides a command-line interface for users to interact with the operating system. It acts as an intermediary between the user and the operating system, interpreting and executing commands entered by the user.
+
 #### An alx team project where each team are required to create a command line interpreter that takes a text command and execute other program in response to thet command
 
 <hr>
