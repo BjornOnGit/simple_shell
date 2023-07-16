@@ -78,3 +78,43 @@ hsh main.c shell.c test_ls_2
 hsh main.c shell.c test_ls_2
 $
 ```
+# CODING YOUR OWN SHELL
+## Contents
+
+1. [PID & PPID](#pid--ppid)
+2. [Creating a Simple Shell](#creating-a-simple-shell)
+3. [Executing Programs with execve](#executing-programs-with-execve)
+4. [Creating Processes with fork](#creating-processes-with-fork)
+5. [Synchronizing Processes with wait](#synchronizing-processes-with-wait)
+6. [Working with Environment Variables](#working-with-environment-variables)
+
+## PID & PPID
+
+- Understanding process IDs (PID) and parent process IDs (PPID)
+- Retrieving process IDs using system calls
+
+## Creating a Simple Shell
+
+- Implementing a simple shell interpreter based on bash and sh
+- Parsing user commands and executing them
+
+## Executing Programs with execve
+
+- Using the execve system call to execute another program
+- Replacing the current process with a new program
+
+## Creating Processes with fork
+
+- Understanding the fork system call
+- Creating child processes from a parent process
+
+## Synchronizing Processes with wait
+
+- Using the wait system call to suspend the execution of the parent process
+- Waiting for child processes to terminate before continuing
+
+## Working with Environment Variables
+
+- Accessing and manipulating environment variables in shell programs
+- Retrieving the environment using the `environ` variable
+- Modifying environment variables using custom functions
