@@ -11,5 +11,7 @@
 #define MAX_TOKBUFSIZE 128
 #define MAX_COMM_LENG 1024
 
+/* function prototypes*/
+void execmd(char **argv);
 
 #endif /* SHELL_H */
